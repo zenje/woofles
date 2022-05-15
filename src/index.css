@@ -17,6 +17,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root,
@@ -42,7 +46,7 @@ body,
 header {
   display: flex;
   flex-direction: row;
-  height: 3rem;
+  min-height: 3rem;
   background-color: black;
   padding: 1rem;
 }
@@ -71,4 +75,10 @@ h1#title {
 
 h1.dog-name {
   text-align: center;
+}
+
+img.dog-profile-img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10%;
 }

@@ -1,30 +1,23 @@
+import { defaultTheme, Provider } from '@adobe/react-spectrum';
+import { BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
-import DoggieViewer from './components/DoggieViewer';
-import {
-  Button,
-  Header,
-  Heading,
-  defaultTheme,
-  Provider,
-  Flex,
-  View,
-} from '@adobe/react-spectrum';
+import RoutesContainer from './components/RoutesContainer';
 
 function App() {
   return (
-    <Provider theme={defaultTheme}>
-      <div className="app-container">
-        <header>
-          <div>
-            <a href="/">home</a>
-          </div>
-          <div>
-            <a href="/catalog">catalog</a>
-          </div>
-        </header>
-        <DoggieViewer />
-      </div>
-    </Provider>
+    <BrowserRouter>
+      <Provider theme={defaultTheme}>
+        <div className="app-container">
+          <header>
+            <nav>
+              <Link to="/">Home</Link> | <Link to="/catalog">Catalog</Link> |{' '}
+              <Link to="/breed/10">Breed</Link>
+            </nav>
+          </header>
+          <RoutesContainer />
+        </div>
+      </Provider>
+    </BrowserRouter>
   );
 }
 

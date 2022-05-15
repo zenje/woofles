@@ -1,5 +1,6 @@
 import { Flex } from '@adobe/react-spectrum';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DogImage } from '../types';
 import { getTemperamentString } from '../utils/utils';
 
@@ -22,6 +23,8 @@ const findLandingImage = (images: DogImage[]): DogImage | null => {
 
 const DoggieViewer = (props: Props) => {
   const [landingImage, setLandingImage] = useState<DogImage | null>(null);
+  let navigate = useNavigate();
+
   useEffect(() => {
     fetch(
       'https://api.thedogapi.com/v1/images/search?size=large&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=10'
@@ -45,7 +48,14 @@ const DoggieViewer = (props: Props) => {
         find your new best friend!
       </h1>
       {landingImage && (
-        <img className="doggo" src={landingImage.url} alt="doggo" />
+        <img
+          onClick={() => {
+            navigate(`/breed/${landingImage.breeds[0].id}`, { replace: true });
+          }}
+          className="doggo"
+          src={landingImage.url}
+          alt="doggo"
+        />
       )}
       <h1 className="spectrum-Heading spectrum-Heading--sizeXXL dog-name">
         {landingImage && (
