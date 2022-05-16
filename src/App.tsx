@@ -11,7 +11,8 @@ function App() {
           <header>
             <nav>
               <Link to="/">Home</Link> | <Link to="/catalog">Catalog</Link> |{' '}
-              <Link to="/breed/10">Breed</Link>
+              <Link to="/breed/10">Breed</Link> |{' '}
+              <Link to="/compare">Compare</Link>
             </nav>
           </header>
           <RoutesContainer />

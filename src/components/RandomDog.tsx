@@ -5,7 +5,7 @@ import { getTemperamentString } from '../utils/utils';
 import ImageWithHoverText from './ImageWithHoverText';
 
 const RandomDog = ({ breeds, url }: DogImage) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { id: breedId, name, temperament } = breeds[0];
   const navigateToBreed = () => {
@@ -19,6 +19,7 @@ const RandomDog = ({ breeds, url }: DogImage) => {
         imgClasses="random-dog-img"
         onHoverImgClasses="random-dog-img-hover"
         src={url}
+        alt={name}
       />
       <div className="random-dog-content">
         <div className="spectrum-Body spectrum-Body--sizeXXXL">

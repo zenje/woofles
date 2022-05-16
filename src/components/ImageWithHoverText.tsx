@@ -1,8 +1,9 @@
+import cn from 'classnames';
 import { useRef } from 'react';
 import { useHover } from 'usehooks-ts';
-import cn from 'classnames';
 
 type Props = {
+  alt: string;
   hoverText: string;
   imgClasses: string;
   onHoverImgClasses: string;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const ImageWithHoverText = ({
+  alt,
   hoverText,
   imgClasses,
   onHoverImgClasses,
@@ -27,7 +29,7 @@ const ImageWithHoverText = ({
 
   return (
     <div className="image-with-hover-container" ref={hoverRef}>
-      <img className={classNames} src={src} onClick={onClick} />
+      <img className={classNames} src={src} onClick={onClick} alt={alt} />
       {isHover && (
         <h1 className="spectrum-Heading spectrum-Heading--sizeXL image-with-hover-text">
           {hoverText}

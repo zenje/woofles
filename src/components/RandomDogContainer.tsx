@@ -1,6 +1,6 @@
 import { useFetch } from 'usehooks-ts';
 import { DogImage } from '../types';
-import { GET_RANDOM_IMAGES_URL } from '../utils/constants';
+import { FETCH_RANDOM_IMAGES_URL } from '../utils/constants';
 import { LANDING_PAGE_TITLE } from '../utils/strings';
 import RandomDog from './RandomDog';
 
@@ -23,7 +23,7 @@ const findLandingImage = (images: DogImage[] | undefined): DogImage | null => {
 };
 
 const RandomDogContainer = () => {
-  const { data, error } = useFetch<DogImage[]>(GET_RANDOM_IMAGES_URL);
+  const { data, error } = useFetch<DogImage[]>(FETCH_RANDOM_IMAGES_URL);
   const randomDog: DogImage | null = findLandingImage(data);
   return (
     <>
