@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import { DogImage } from '../types';
-import { DOG_HOVER_TEXT } from '../utils/strings';
+import { DOG_HOVER_TEXT } from '../utils/constants';
 import { getTemperamentString } from '../utils/utils';
 import ImageWithHoverText from './ImageWithHoverText';
 
 const RandomDog = ({ breeds, url }: DogImage) => {
-  const navigate = useNavigate();
-
   const { id: breedId, name, temperament } = breeds[0];
+  
+  const navigate = useNavigate();
   const navigateToBreed = () => {
     navigate(`/breed/${breedId}`, { replace: true });
   };
+
   return (
     <>
       <ImageWithHoverText
@@ -29,7 +30,7 @@ const RandomDog = ({ breeds, url }: DogImage) => {
           {`Meet the `}
           <a
             className="random-dog-name-link"
-            href="#"
+            href="/#"
             onClick={navigateToBreed}
           >
             {name}

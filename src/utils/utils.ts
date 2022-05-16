@@ -1,3 +1,6 @@
+import { DogImage } from '../types';
+import { getTemperamentTmplStrs } from './constants';
+
 type ListFormatOptions = {
   type?: 'conjunction' | 'disjunction' | 'unit';
   style?: 'long' | 'short' | 'narrow';
@@ -11,14 +14,6 @@ declare namespace Intl {
   }
 }
 
-const getTemperamentTmplStrs = () => {
-  return [
-    (temperament: string) => `Looking for a friend who's ${temperament}?`,
-    (temperament: string) => `How about a doggo who's ${temperament}?`,
-    (temperament: string) => `They're ${temperament}.`,
-  ];
-};
-
 export const getTemperamentString = (temperament: string): string => {
   const words = temperament.split(', ').map((s) => s.trim());
   const formatter = new Intl.ListFormat('en', {
@@ -29,4 +24,20 @@ export const getTemperamentString = (temperament: string): string => {
   const tmplStrs = getTemperamentTmplStrs();
   const randIndex = Math.floor(Math.random() * tmplStrs.length);
   return tmplStrs[randIndex](formattedTemperament);
+};
+
+export const findRandomImageFromData = (
+  images: DogImage[]
+): DogImage | null => {
+  return (
+    images.find((image) => {
+      return (
+        image.width > 600 &&
+        image.height > 600 &&
+        Math.abs(image.width - image.height) /
+          Math.min(image.width, image.height) <
+          0.3
+      );
+    }) ?? null
+  );
 };

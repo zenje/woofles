@@ -1,18 +1,17 @@
+import cn from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useFetch } from 'usehooks-ts';
-import { Breed } from '../types';
-import cn from 'classnames';
-import { BREED_INFO } from '../utils/strings';
-import { getFetchBreedsByIdUrl } from '../utils/constants';
+import { Breed, LabelValue } from '../types';
+import {
+    BREED_INFO,
+    getDogImgUrl,
+    getFetchBreedsByIdUrl
+} from '../utils/constants';
+import ErrorContainer from './ErrorContainer';
 
 type Props = {
   id: string;
   className?: string;
-};
-
-type LabelValue = {
-  label: string;
-  value: string | null;
 };
 
 const getInfoLabelValues = (data: Breed): LabelValue[] => {
@@ -38,15 +37,25 @@ const getInfoLabelValues = (data: Breed): LabelValue[] => {
 };
 
 const renderInfo = (infoLabelValues: LabelValue[]) => {
-  return infoLabelValues.map((labelValue) =>
-    labelValue && labelValue.value ? (
-      <div key={labelValue.label} className="dog-profile-detail-row">
-        <div className="spectrum-Detail spectrum-Detail--sizeXL">
-          {labelValue.label}
-        </div>
-        <div className="dog-profile-detail-row-right">{labelValue.value}</div>
-      </div>
-    ) : null
+  return (
+    <div role="list">
+      {infoLabelValues.map((labelValue) =>
+        labelValue && labelValue.value ? (
+          <div
+            role="listitem"
+            key={labelValue.label}
+            className="dog-profile-detail-row"
+          >
+            <div className="spectrum-Detail spectrum-Detail--sizeXL">
+              {labelValue.label}
+            </div>
+            <div className="dog-profile-detail-row-right">
+              {labelValue.value}
+            </div>
+          </div>
+        ) : null
+      )}
+    </div>
   );
 };
 
@@ -57,22 +66,27 @@ export const DogProfileWithParams = () => {
 
 const DogProfile = ({ className, id }: Props) => {
   const { data, error } = useFetch<Breed>(getFetchBreedsByIdUrl(id));
-  console.log('data', data);
+
+  if (error) {
+    return <ErrorContainer />;
+  }
 
   if (data) {
     const infoLabelValues: LabelValue[] = getInfoLabelValues(data);
+    const { name, reference_image_id } = data;
     return (
       <div className={cn('dog-profile', className)}>
         <h1
           className="spectrum-Heading spectrum-Heading--sizeXXL dog-profile-title"
           id="title"
         >
-          {data.name}
+          {name}
         </h1>
-        {data.reference_image_id && (
+        {reference_image_id && (
           <img
             className="dog-profile-img"
-            src={`https://cdn2.thedogapi.com/images/${data.reference_image_id}.jpg`}
+            src={getDogImgUrl(reference_image_id)}
+            alt={data.name}
           />
         )}
         <div className="dog-profile-content">{renderInfo(infoLabelValues)}</div>

@@ -3,6 +3,7 @@ import Catalog from './Catalog';
 import { DogProfileWithParams } from './DogProfile';
 import { DogProfileCompareWithParams } from './DogProfileCompare';
 import RandomDogContainer from './RandomDogContainer';
+import { NAVIGATION } from '../utils/constants';
 
 const wrapped = (Component: any) => {
   const WrappedComponent = () => (
@@ -21,12 +22,15 @@ const WrappedDogProfileCompare = wrapped(DogProfileCompareWithParams);
 const RoutesContainer = () => {
   return (
     <Routes>
-      <Route path="/" element={<WrappedRandomDog />} />
-      <Route path="/breed">
+      <Route path={NAVIGATION.HOME.to} element={<WrappedRandomDog />} />
+      <Route path={NAVIGATION.BREED.to}>
         <Route path=":id" element={<WrappedDogProfile />} />
       </Route>
-      <Route path="/catalog" element={<WrappedCatalog />} />
-      <Route path="/compare" element={<WrappedDogProfileCompare />} />
+      <Route path={NAVIGATION.CATALOG.to} element={<WrappedCatalog />} />
+      <Route
+        path={NAVIGATION.COMPARE.to}
+        element={<WrappedDogProfileCompare />}
+      />
     </Routes>
   );
 };

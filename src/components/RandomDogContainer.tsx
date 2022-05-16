@@ -1,30 +1,23 @@
 import { useFetch } from 'usehooks-ts';
 import { DogImage } from '../types';
-import { FETCH_RANDOM_IMAGES_URL } from '../utils/constants';
-import { LANDING_PAGE_TITLE } from '../utils/strings';
+import {
+  FETCH_RANDOM_IMAGES_URL,
+  LANDING_PAGE_TITLE,
+} from '../utils/constants';
+import { findRandomImageFromData } from '../utils/utils';
+import ErrorContainer from './ErrorContainer';
 import RandomDog from './RandomDog';
-
-const findLandingImage = (images: DogImage[] | undefined): DogImage | null => {
-  if (images) {
-    console.log(images);
-    return (
-      images.find((image) => {
-        return (
-          image.width > 600 &&
-          image.height > 600 &&
-          Math.abs(image.width - image.height) /
-            Math.min(image.width, image.height) <
-            0.3
-        );
-      }) ?? null
-    );
-  }
-  return null;
-};
 
 const RandomDogContainer = () => {
   const { data, error } = useFetch<DogImage[]>(FETCH_RANDOM_IMAGES_URL);
-  const randomDog: DogImage | null = findLandingImage(data);
+  const randomDogImage: DogImage | null = data
+    ? findRandomImageFromData(data)
+    : null;
+
+  if (error) {
+    return <ErrorContainer />;
+  }
+  
   return (
     <>
       <h1
@@ -33,7 +26,7 @@ const RandomDogContainer = () => {
       >
         {LANDING_PAGE_TITLE}
       </h1>
-      {randomDog && <RandomDog {...randomDog} />}
+      {randomDogImage && <RandomDog {...randomDogImage} />}
     </>
   );
 };

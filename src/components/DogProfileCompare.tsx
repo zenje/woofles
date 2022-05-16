@@ -18,7 +18,7 @@ const DogProfileCompare = ({ ids }: Props) => {
   return (
     <div className="dog-profile-compare">
       {Array.from(ids).map((id) => (
-        <DogProfile className="dog-profile-compare-item" id={id} />
+        <DogProfile key={id} className="dog-profile-compare-item" id={id} />
       ))}
     </div>
   );

@@ -24,5 +24,10 @@ export interface DogImage {
 
 export type NavigationLink = {
   to: string;
+  label?: string;
+};
+
+export type LabelValue = {
   label: string;
-}
+  value: string | null;
+};
