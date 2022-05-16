@@ -1,7 +1,9 @@
 import { defaultTheme, Provider } from '@adobe/react-spectrum';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import Navigation from './components/Navigation';
 import RoutesContainer from './components/RoutesContainer';
+import { NAVIGATION_LINKS } from './utils/constants';
 
 function App() {
   return (
@@ -9,11 +11,7 @@ function App() {
       <Provider theme={defaultTheme}>
         <div className="app-container">
           <header>
-            <nav>
-              <Link to="/">Home</Link> | <Link to="/catalog">Catalog</Link> |{' '}
-              <Link to="/breed/10">Breed</Link> |{' '}
-              <Link to="/compare">Compare</Link>
-            </nav>
+            <Navigation links={NAVIGATION_LINKS} />
           </header>
           <RoutesContainer />
         </div>

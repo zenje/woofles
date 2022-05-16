@@ -19,12 +19,27 @@ body {
 
 * {
   box-sizing: border-box;
+  transition: 0.3s ease-in-out;
+}
+
+a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+a:hover,
+a.disabled {
+  color: rgb(255, 255, 255, 0.5);
+}
+
+a.disabled {
+  cursor: default;
+  pointer-events: none;
 }
 
 html,
 body,
-#root,
-#root > div {
+#root {
   height: 100%;
 }
 
@@ -47,8 +62,12 @@ header {
   display: flex;
   flex-direction: row;
   min-height: 3rem;
-  background-color: black;
   padding: 1rem;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
 }
 
 h1.random-dog-title {
@@ -90,7 +109,6 @@ h1.dog-profile-title {
   max-width: 500px;
   max-height: 500px;
   opacity: 1;
-  transition: 0.3s ease-in-out;
   cursor: pointer;
 }
 
@@ -109,6 +127,7 @@ h1.dog-profile-title {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .random-dog-content {
@@ -116,9 +135,8 @@ h1.dog-profile-title {
   padding: 2rem;
 }
 
-.random-dog-name-link {
-  color: rgb(255, 255, 255);
-  letter-spacing: 0.2rem;
+a.random-dog-name-link {
+  text-decoration: underline;
 }
 
 h1.dog-name {

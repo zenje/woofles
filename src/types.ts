@@ -21,3 +21,8 @@ export interface DogImage {
   url: string;
   width: number;
 }
+
+export type NavigationLink = {
+  to: string;
+  label: string;
+}

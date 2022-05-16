@@ -31,7 +31,10 @@ const ImageWithHoverText = ({
     <div className="image-with-hover-container" ref={hoverRef}>
       <img className={classNames} src={src} onClick={onClick} alt={alt} />
       {isHover && (
-        <h1 className="spectrum-Heading spectrum-Heading--sizeXL image-with-hover-text">
+        <h1
+          className="spectrum-Heading spectrum-Heading--sizeXL image-with-hover-text"
+          onClick={onClick}
+        >
           {hoverText}
         </h1>
       )}
