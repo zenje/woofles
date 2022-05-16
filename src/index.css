@@ -51,17 +51,35 @@ header {
   padding: 1rem;
 }
 
-h1#title {
+h1.random-dog-title {
   text-align: center;
+  padding: 10vh 0;
 }
 
-.doggo-container {
+h1.dog-profile-title {
+  text-align: center;
+  padding: 5vh 0;
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(20, 20, 20);
+  max-width: 50rem;
+  padding: 2rem;
+}
+
+.random-dog-img-container {
   width: 100%;
 }
 
-.doggo {
-  width: 100vw;
-  height: 100vw;
+.random-dog-img {
+  width: calc(100vw - 4rem);
+  height: calc(100vw - 4rem);
   -webkit-border-radius: 100vw;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 100vw;
@@ -71,6 +89,36 @@ h1#title {
   object-fit: cover;
   max-width: 500px;
   max-height: 500px;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.random-dog-img-hover {
+  opacity: 0.6;
+}
+
+.image-with-hover-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.image-with-hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.random-dog-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.random-dog-name-link {
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.2rem;
 }
 
 h1.dog-name {
@@ -79,6 +127,19 @@ h1.dog-name {
 
 img.dog-profile-img {
   width: 100%;
-  max-width: 500px;
   border-radius: 10%;
+}
+
+.dog-profile-content {
+  padding: 2rem;
+}
+
+.dog-profile-detail-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.dog-profile-detail-row-right {
+  text-align: right;
 }
