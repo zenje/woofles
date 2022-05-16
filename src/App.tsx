@@ -2,9 +2,11 @@ import { darkTheme, Provider } from '@adobe/react-spectrum';
 import { BrowserRouter } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Routes from './components/RoutesContainer';
-import { NAVIGATION_LINKS } from './utils/constants';
+import useTitle from './hooks/useTitle';
+import { NAVIGATION_LINKS, PAGE_TITLE } from './utils/constants';
 
 function App() {
+  useTitle(PAGE_TITLE);
   return (
     <BrowserRouter>
       <Provider theme={darkTheme}>

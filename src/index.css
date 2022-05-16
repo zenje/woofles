@@ -17,6 +17,12 @@ body {
   background-color: rgb(30, 30, 30);
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -37,12 +43,6 @@ a.disabled {
   pointer-events: none;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 .app-container {
   width: 100%;
   height: 100%;
@@ -55,7 +55,7 @@ body,
 header {
   display: flex;
   flex-direction: row;
-  min-height: 3rem;
+  min-height: 4rem;
   padding: 1rem;
 }
 
@@ -79,10 +79,19 @@ h1.dog-profile-title {
   flex: 1;
   width: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
   background-color: rgb(20, 20, 20);
   max-width: 50rem;
+  min-height: calc(100vh - 6rem);
+  padding: 2rem;
+}
+
+.inner-wrapper-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: 2rem;
 }
 
@@ -134,8 +143,9 @@ a.random-dog-name-link {
   text-decoration: underline;
 }
 
-h1.dog-name {
+h1.random-dog-meet {
   text-align: center;
+  margin-top: 2rem;
 }
 
 img.dog-profile-img {
@@ -165,7 +175,14 @@ img.dog-profile-img {
 }
 
 .dog-profile-compare-item {
-  flex: 25%;
+  flex: 45%;
+  min-width: 45%;
+}
+
+@media screen and (max-width: 700px) {
+  .dog-profile-compare-item {
+    flex-basis: 100%;
+  }
 }
 
 .catalog-compare-button-container {

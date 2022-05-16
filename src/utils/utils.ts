@@ -1,5 +1,5 @@
-import { DogImage } from '../types';
-import { getTemperamentTmplStrs } from './constants';
+import { Breed, DogImage, LabelValue } from '../types';
+import { BREED_INFO, getTemperamentTmplStrs } from './constants';
 
 type ListFormatOptions = {
   type?: 'conjunction' | 'disjunction' | 'unit';
@@ -40,4 +40,26 @@ export const findRandomImageFromData = (
       );
     }) ?? null
   );
+};
+
+export const getInfoLabelValuesFromBreedData = (data: Breed): LabelValue[] => {
+  return [
+    { label: BREED_INFO.ORIGIN, value: data.origin },
+    { label: BREED_INFO.BRED_FOR, value: data.bred_for },
+    { label: BREED_INFO.BREED_GROUP, value: data.breed_group },
+    { label: BREED_INFO.TEMPERAMENT, value: data.temperament },
+    { label: BREED_INFO.LIFE_SPAN, value: data.life_span },
+    {
+      label: BREED_INFO.HEIGHT,
+      value: data.height
+        ? `${data.height.imperial} in (${data.height.metric} cm)`
+        : null,
+    },
+    {
+      label: BREED_INFO.WEIGHT,
+      value: data.weight
+        ? `${data.weight.imperial} lbs (${data.height.metric} kg)`
+        : null,
+    },
+  ];
 };

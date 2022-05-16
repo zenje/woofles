@@ -8,7 +8,9 @@ import { NAVIGATION } from '../utils/constants';
 const wrapped = (Component: any) => {
   const WrappedComponent = () => (
     <div className="content-container">
-      <Component />
+      <div className="inner-wrapper-container">
+        <Component />
+      </div>
     </div>
   );
   return WrappedComponent;

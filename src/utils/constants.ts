@@ -1,8 +1,9 @@
 import { NavigationLink } from '../types';
 
 /**
- * strings / labels
+ * Strings / labels
  */
+export const PAGE_TITLE: string = `woofles`;
 export const LANDING_PAGE_TITLE: string = `Your new best friend.`;
 export const DOG_HOVER_TEXT: string = `Woof! Click on me to learn more!`;
 export const CATALOG_TITLE: string = `Choose 1-4 dog breeds to learn more.`;
@@ -18,7 +19,8 @@ export const BREED_INFO: { [key: string]: string } = {
   WEIGHT: 'Weight',
 };
 
-export const NAVIGATION: { [key: string]: NavigationLink } = {
+type NavigationKeys = 'HOME' | 'CATALOG' | 'COMPARE' | 'BREED';
+export const NAVIGATION: { [k in NavigationKeys]: NavigationLink } = {
   HOME: { to: '/', label: 'home' },
   CATALOG: { to: '/catalog', label: 'browse' },
   COMPARE: { to: '/compare' },
@@ -36,7 +38,7 @@ export const getTemperamentTmplStrs = () => {
 };
 
 /**
- * other constants
+ * Other constants
  */
 export const FETCH_RANDOM_IMAGES_URL: string = `https://api.thedogapi.com/v1/images/search?size=large&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=10`;
 
