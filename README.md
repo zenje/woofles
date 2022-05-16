@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# woofles
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fun way to browse different types of dogs, sourced from the [The Dog API](https://thedogapi.com/).
+Features:
+- Shows a random dog image and breed on the landing page
+- Asynchronously and incrementally loads a list of dog types; user can subsequently select up to 4 types to compare
+- User can view dog profiles and info about each type
+- Responsive design
 
-## Available Scripts
+Live demo: [https://woofles.herokuapp.com/](https://woofles.herokuapp.com/)
 
-In the project directory, you can run:
+_(**Note**: Heroku takes some time to load.)_
 
-### `npm start`
+## Running the app
+#### Install dependencies:
+```
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Build and run locally:
+```
+npm start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Open [http://localhost:3000](http://localhost:3000) to view app in development mode.
 
-### `npm test`
+## About
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### APIs used
+Data is provided by the [The Dog API](https://thedogapi.com/).
 
-### `npm run build`
+#### Random dog images
+```
+GET https://api.thedogapi.com/v1/images/search?size=large&mime_types=jpg&format=json&has_breeds=true&order=RANDOM
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Dog breeds
+```
+GET https://api.thedogapi.com/v1/breeds
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Dog breed info by id
+```
+GET https://api.thedogapi.com/v1/breeds/{id}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### @adobe/react-spectrum
+This project uses a number of utilities from Adobe's [React Spectrum libraries](https://react-spectrum.adobe.com/). Notably:
+- @react-stately - useAsyncList() for fetching and infinite-loading the list of dog breeds
+- @react-spectrum - Button, Item, ListBox, Provider, dark theme
+- @spectrum-css - for various additional styling (mostly typography)
 
-### `npm run eject`
+Using Spectrum helped give the app a cohesive and consistent look and feel.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+In the future, @react-aria could also be utilized to improve accessibility.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Testing
+Tests are not currently available for this project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Future end-to-end tests that test the core functionality could include:
+1) Loading the landing page, seeing a random dog image; clicking on the dog image, which should then load the dog profile page
+2) Loading the catalog page, selecting 1-4 dog types and clicking submit; seeing all of the selected dog types' profiles on one page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Technologies used
+- React, TypeScript
+- [@adobe/react-spectrum](https://react-spectrum.adobe.com/react-spectrum/index.html), [@adobe/react-stately](https://react-spectrum.adobe.com/react-spectrum/index.html), [@spectrum-css](https://opensource.adobe.com/spectrum-css/index.html)
+- [classnames](https://github.com/JedWatson/classnames)
+- [react-router-dom](https://reactrouter.com/docs/en/v6/getting-started/overview)
+- [usehooks-ts](https://usehooks-ts.com/)
